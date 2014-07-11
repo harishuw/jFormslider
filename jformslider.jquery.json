@@ -1,5 +1,5 @@
 {
-    "name": "jFormslider",
+    "name": "jformslider",
     "title": "A form in slider form",
     "description": "jFormslider is a jquey plugin which you can implement a form in form of a slider",
     "keywords": [
@@ -9,7 +9,7 @@
 		"slider"
         
     ],
-    "version": "1.1",
+    "version": "1.0.1",
     "author": {
         "name": "Harish U Warrier",
 		"email": "huwz1it@gmail.com",
