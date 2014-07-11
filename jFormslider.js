@@ -94,7 +94,13 @@ $.fn.jFormslider=function(options)
 	}
 	$(this).find('li').each(function(index,element){
 		
-		$(this).find('input,select').last().disableTab();
+		$(this).find('input,select').last().keydown(function(e) {
+			
+			if(e.which==9 )
+			{
+				return false;
+			}
+		});
 					
 	});		
 	$('[prev]').click(function(e){
