@@ -9,7 +9,7 @@
 		"slider"
         
     ],
-    "version": "1.0.1",
+    "version": "1.0.2",
     "author": {
         "name": "Harish U Warrier",
 		"email": "huwz1it@gmail.com",
@@ -22,8 +22,8 @@
         }
     ],
     "bugs": "https://github.com/harishuw/jFormslider/issues/",
-    "homepage": "https://github.com/harishuw/jFormslider/",
-    "docs": "https://github.com/harishuw/jFormslider/",
+    "homepage": "http://jformslider.0fees.us/",
+    "docs": "http://jformslider.0fees.us/",
     "download": "https://github.com/harishuw/jFormslider/",
     "dependencies": {
         "jquery": ">=1.8.3"

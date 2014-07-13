@@ -1,6 +1,6 @@
 /*
 **************************************
-******jFormsliderv 1.1****************
+******jFormsliderv 1.0.2**************
 ******jFormslider.js******************
 ******Created by Harish U Warrier*****
 ******Created on 08-06-2014***********
@@ -8,27 +8,41 @@
 ******huwz1it@gmail.com***************
 **************************************
 */
+
+if("undefined"==typeof jQuery)
+{
+	if('undefined'!==typeof console)
+	{
+	
+		console.log('%c Sorry!!There is no jquery please get jquery ','color: red');
+	}else
+	{
+		throw new Error("Sorry!!There is no jquery please get jquery");
+	}
+	
+}
 $.fn.jFormslider=function(options)
 {
 	var $this=$(this);
 	var lilength=$this.find('li').length;
-	var randomid='dfghjn'+new Date().valueOf();
-	var msgspan='<span id="'+randomid+'" style="color:red"></span>';
+	var randomid='jformslider'+new Date().valueOf();
 	var defaults=
 	{
 		width:600,
-		validation:true,
 		height:300,
 		next_prev:true,
-		full_navigation:true,
 		next_class:'',
 		prev_class:'',
+		error_class:'',
 		texts:{
 				next:'next',
 				prev:'prev'
 			  },
-		duration:400,
+		speed:400,
+		bootstrap:false,
+		full_navigation:true,
 		ajax:false,
+		validation:true,
 		
 	}
 	
@@ -40,6 +54,7 @@ $.fn.jFormslider=function(options)
 	{
 		options=defaults;
 	}
+	var msgspan='<div class="'+options.error_class+'" id="'+randomid+'" style="display:none"></div>';
 	var next_button='<a class="'+options.next_class+'" next style="float:right">'+options.texts.next+'</a>';
 	var prev_button='<a class="'+options.prev_class+'" prev style="float:left">'+options.texts.prev+'</a>';
 	var width=options.width;
@@ -68,7 +83,7 @@ $.fn.jFormslider=function(options)
 	$(this).css(divcss);
 	$(this).find('ul').css(ulcss);
 	$(this).find('li').css(licss);
-	$(this).append(msgspan);
+	$(this).after(msgspan);
 	if($(this).find('li:first').hasAttr('call-before'))
 		{
 			var func=$(this).find('li:first').attr('call-before');
@@ -118,29 +133,14 @@ $.fn.jFormslider=function(options)
 		var current_slide=$(this).get_current_slide();
 		var next_slide=current_slide.next('li');
 		var slidestart=false;
-		if(next_slide.hasAttr('call-before'))
-		{
-			var func=next_slide.attr('call-before');
-			if(!eval(func))
-			{
-				slidestart=false;
-				return false;
-			}else
-			{
-				slidestart=true;
-			}
-			
-		}else
-		{
-			slidestart=true;
-		}
+	
 		current_slide.find('input[required],select[required],input[email]').each(function(index,element){
 			if($(this).hasAttr('required'))
 			{
 				if($.trim($(this).val())=='')
 				{
 					var msg=$(this).hasAttr('data-msg')?$(this).attr('data-msg'):'Please fill this field';
-					$('#'+randomid).text(msg);
+					$('#'+randomid).html(msg).show();
 					$(this).focus();
 					slidestart=false;
 					return false;
@@ -151,7 +151,7 @@ $.fn.jFormslider=function(options)
 			{
 				if(!emailvalid($.trim($(this).val())))
 				{
-					$('#'+randomid).text('Please Enter a valid email');
+					$('#'+randomid).html('Please Enter a valid email').show();
 					$(this).focus();
 					slidestart=false;
 					return false;
@@ -162,21 +162,45 @@ $.fn.jFormslider=function(options)
 				if($.trim($(this).val())=='-1')
 				{
 					var msg=$(this).hasAttr('data-msg')?$(this).attr('data-msg'):'Please fill this field';
-					$('#'+randomid).text(msg);
+					$('#'+randomid).text(msg).show();
 					$(this).focus();
 					slidestart=false;
 					return false;
 				}
 			}
-				$('#'+randomid).text('');
+				$('#'+randomid).html('').hide();
 				slidestart=true;
+		
+				
 		});
-			
+		if(current_slide.find('input[required],select[required],input[email]').length<=0)
+		{
+			slidestart=true;
+		}		
+		if(slidestart)	
+		{	
+				if(next_slide.hasAttr('call-before'))
+				{
+					var func=next_slide.attr('call-before');
+					if(!eval(func))
+					{
+						slidestart=false;
+						return false;
+					}else
+					{
+						slidestart=true;
+					}
+					
+				}else
+				{
+					slidestart=true;
+				}	
+		}
 		if(slidestart)
 		{
 			var px=Number($(this).find('ul').css('margin-left').replace("px",""));
 			px-=width;
-			$(this).find('ul').animate({ marginLeft: px+'px' }, options.duration);
+			$(this).find('ul').animate({ marginLeft: px+'px' }, options.speed);
 		}
 	
 	};
@@ -185,7 +209,7 @@ $.fn.jFormslider=function(options)
 		
 		var px=Number($(this).find('ul').css('margin-left').replace("px",""));
 		px+=width;
-		$(this).find('ul').animate({ marginLeft: px+'px' }, options.duration);
+		$(this).find('ul').animate({ marginLeft: px+'px' }, options.speed);
 		
 	};
 	$.fn.gotoSlide= function(slideid){
@@ -209,7 +233,7 @@ $.fn.jFormslider=function(options)
 			var px='-'+go_to+'px';
 			if(found)
 			{
-				$(this).find('ul').animate({ marginLeft:px }, options.duration);
+				$(this).find('ul').animate({ marginLeft:px }, options.speed);
 			}else
 			{
 				message('nodataid');
@@ -261,7 +285,7 @@ $.fn.jFormslider=function(options)
 		{
 			case 'startup':msg='%c Congratulations!!!  You are using %cjFormslider v 1.1';
 						  style='color: green';
-						  if(console)
+						  if('undefined'!==typeof console)
 							{
 								console.log(msg,style,'font-style:italic;font-size:15px;font-weight:bold;'+style);
 							}
@@ -269,15 +293,27 @@ $.fn.jFormslider=function(options)
 			case 'nodataid':msg='%c No %c"data-id" %cdefined; Please define a %c"data-id" %cin a li to use function %c"gotoSlide()" ';
 						  style='color: red';
 						  style1=style+';font-style:italic;font-size:15px;font-weight:bold;';
-						  if(console)
+						  if('undefined'!==typeof console)
 							{
 								console.log(msg,style,style1,style,style1,style,style1);
 							}
-						  break;		
+						  break;
+			case "nojquery":
+						  msg='%c Sorry!!There is no jquery please get jquery ';
+						  style='color: red';
+						    if('undefined'!==typeof console)
+							{
+								console.log(msg,style);
+							}else
+							{
+								throw new Error("Sorry!!There is no jquery please get jquery");
+							}
+			
+						break;	
 			case 'unknown':msg='%c Sorry!! Some Unknown Error Occured.Please try again ';
 						  style='color: red';
 						  style1=style+';font-style:italic;font-size:15px;font-weight:bold;';
-						  if(console)
+						  if('undefined'!==typeof console)
 							{
 								console.log(msg,style);
 							}
@@ -287,8 +323,8 @@ $.fn.jFormslider=function(options)
 	
 	function emailvalid(email) 
 	{
-		var re = /\S+@\S+\.\S+/;
-		return re.test(email);
+		var rexp = /\S+@\S+\.\S+/;
+		return rexp.test(email);
 	}
 	
 	
