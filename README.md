@@ -17,8 +17,7 @@ Form should be in ul li format
 
 
 <h4>Usage</h4>
-			<!--usage-->
-			<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">//default options</span>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">//default options</span>
 options<span style="color: #333333">=</span>{
 	width<span style="color: #333333">:</span><span style="color: #0000DD; font-weight: bold">600</span>,<span style="color: #888888">//width of slider</span>
 	height<span style="color: #333333">:</span><span style="color: #0000DD; font-weight: bold">300</span>,<span style="color: #888888">//height of slider</span>
@@ -34,20 +33,9 @@ options<span style="color: #333333">=</span>{
 		}	<br/>	$(<span style="background-color: #fff0f0">&#39;#slider&#39;</span>).jFormslider(options);//usage
 </pre></div>
 
-			<!--usage-->
+		
 		<div>
-		<div class="col-xs-6 col-md-6" style="margin-top:10px">
-		
-		<a type="button" class="btn btn-success download" href="https://github.com/harishuw/jFormslider">Download From github</a>
-		
-		<a type="button" class="btn btn-success download" href="http://plugins.jquery.com/jformslider" style="margin-top:10px">jquery Pluggin site</a>
-		
-			<div class="alert alert-info" role="alert" style="margin-top:10px">
-      More features are in development stage
-
-please report bugs to <i>huwz1it@gmail.com	</i>
-    </div>
-		</div>
+	
 </div>
 
 <h3>Other features</h3>
@@ -57,17 +45,17 @@ please report bugs to <i>huwz1it@gmail.com	</i>
 and to overide default message put attributr 'data-msg'
 		</div>
 
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">ex:<span style="color: #007700">&lt;input</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;text&quot;</span> <span style="color: #0000CC">name=</span><span style="background-color: #fff0f0">&quot;username&quot;</span> <span style="color: #0000CC">required</span> <span style="color: #0000CC">data-msg=</span><span style="background-color: #fff0f0">&quot;Please enter username&quot;</span><span style="color: #007700">/&gt;</span>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">ex:<span style="color: #007700">&lt;input</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;text&quot;</span> <span style="color: #0000CC">name=</span><span style="background-color: #fff0f0">&quot;username&quot;</span> <span style="color: #0000CC">required</span> <span style="color: #0000CC">data-msg=</span><span style="background-color: #fff0f0">&quot;Please enter username&quot;</span><span style="color: #007700">/&gt;</span>
 </pre></div>
-<!-- HTML generated using hilite.me -->
+
 if you want to validate email put attribute 'email'
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">ex:<span style="color: #007700">&lt;input</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;text&quot;</span> <span style="color: #0000CC">name=</span><span style="background-color: #fff0f0">&quot;email&quot;</span> <span style="color: #0000CC">required</span> <span style="color: #0000CC">data-msg=</span><span style="background-color: #fff0f0">&quot;Please enter a valid email &quot;</span><span style="color: #007700">/&gt;</span>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">ex:<span style="color: #007700">&lt;input</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;text&quot;</span> <span style="color: #0000CC">name=</span><span style="background-color: #fff0f0">&quot;email&quot;</span> <span style="color: #0000CC">required</span> <span style="color: #0000CC">data-msg=</span><span style="background-color: #fff0f0">&quot;Please enter a valid email &quot;</span><span style="color: #007700">/&gt;</span>
 </pre></div>
-<!-- HTML generated using hilite.me -->
+
 <h4>Call before</h4>
 Before sliding to next slide you can call a function 
-For this just put attribute <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">call-before=&quot;some_function()&quot; 
-</pre></div><!-- HTML generated using hilite.me -->
+For this just put attribute <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">call-before=&quot;some_function()&quot; 
+</pre></div>
 in li 
 Before loading this li it will call this function
 function should return true if you want to slide to this li
@@ -77,17 +65,15 @@ function should return false if you  dont want to slide to this li
 
 If you want to goto particular li  without clicking through all slides
 you can call 
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">$(<span style="background-color: #fff0f0">&#39;#slider&#39;</span>).gotoSlide(data<span style="color: #333333">-</span>id)
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">$(<span style="background-color: #fff0f0">&#39;#slider&#39;</span>).gotoSlide(data<span style="color: #333333">-</span>id)
 </pre></div>
-<!-- HTML generated using hilite.me -->
 
 you should specify a attribute in li called 'data-id' for this
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;li</span> <span style="color: #0000CC">data-id=</span><span style="background-color: #fff0f0">&quot;middle_page&quot;</span><span style="color: #007700">&gt;&lt;/li&gt;</span>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;li</span> <span style="color: #0000CC">data-id=</span><span style="background-color: #fff0f0">&quot;middle_page&quot;</span><span style="color: #007700">&gt;&lt;/li&gt;</span>
 </pre></div>
-<!-- HTML generated using hilite.me -->
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">$(<span style="background-color: #fff0f0">&#39;#slider&#39;</span>).gotoSlide(<span style="background-color: #fff0f0">&#39;middle_page&#39;</span>)
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">$(<span style="background-color: #fff0f0">&#39;#slider&#39;</span>).gotoSlide(<span style="background-color: #fff0f0">&#39;middle_page&#39;</span>)
 </pre></div>
-<!-- HTML generated using hilite.me -->
+
 
 
 	<div class="alert alert-info" role="alert" style="margin-top:10px">
