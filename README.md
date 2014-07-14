@@ -43,18 +43,7 @@ options<span style="color: #333333">=</span>{
 		}	<br/>	$(<span style="background-color: #fff0f0">&#39;#slider&#39;</span>).jFormslider(options);//usage
 </pre></div>
 
-		<div class="col-xs-6 col-md-6" style="margin-top:10px">
-		
-		<a type="button" class="btn btn-success download" href="https://github.com/harishuw/jFormslider" target="">Download From github</a>
-		
-		<a type="button" class="btn btn-success download" href="http://plugins.jquery.com/jformslider" style="margin-top:10px">jquery Pluggin site</a>
-		
-			<div class="alert alert-info" role="alert" style="margin-top:10px">
-      More features are in development stage
-
-please report bugs to <i>huwz1it@gmail.com	</i>
-    </div>
-		</div>
+	
   </div>
 <div class="col-md-6">
 		   <h3>Other features</h3>
