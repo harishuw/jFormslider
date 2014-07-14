@@ -107,3 +107,4 @@ you should specify a attribute in li called 'data-id' for this
  
 </div>
 
+More features are in development stage please report bugs to <i>huwz1it@gmail.com</i>
