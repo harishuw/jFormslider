@@ -117,7 +117,23 @@ $.fn.jFormslider=function(options)
 			}
 		});
 					
-	});		
+	});	
+
+	$(this).find('[number]').keydown(function(e){ 
+					
+		var numberarray=[96,97,98,99,100,101,102,103,104,105,109,189,8,46,48,49,50,51,52,53,54,55,56,57,9,16]
+						
+		if($.inArray(e.keyCode,numberarray)==-1)
+		{
+			e.preventDefault();
+			
+		}
+		if(e.keyCode>=65 && e.keyCode<=90)
+		{
+			e.preventDefault();
+			
+		}
+	});	
 	$('[prev]').click(function(e){
 		
 		e.preventDefault();
