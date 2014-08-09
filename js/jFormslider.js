@@ -4,7 +4,7 @@
 ******jFormslider.js******************
 ******Created by Harish U Warrier*****
 ******Created on 08-06-2014***********
-******Modified on 10-07-2014**********
+******Modified on 08-08-2014**********
 ******huwz1it@gmail.com***************
 **************************************
 */
@@ -15,11 +15,11 @@ if("undefined"==typeof jQuery)
 	{
 	
 		console.log('%c Sorry!!There is no jquery please get jquery ','color: red');
+		
 	}else
 	{
 		throw new Error("Sorry!!There is no jquery please get jquery");
 	}
-	
 }
 $.fn.jFormslider=function(options)
 {
@@ -31,24 +31,31 @@ $.fn.jFormslider=function(options)
 		width:600,
 		height:300,
 		next_prev:true,
+		submit_btn:true,
+		submit_class:'',
 		next_class:'',
 		prev_class:'',
-		error_class:'',
+		nav_class:'',
+		error_class:'error',
+		error_element:true,
+		error_position:'',
 		texts:{
 				next:'next',
-				prev:'prev'
+				prev:'prev',
+				submit:'submit'
 			  },
 		speed:400,
 		bootstrap:false,
 		full_navigation:true,
 		ajax:false,
 		validation:true,
-		
+		disabletab:true,
 	}
-	
 	if(arguments.length>0)
 	{
+		var text=$.extend(defaults.texts,options.texts);
 		options=$.extend(defaults,options);
+		options.texts=text;
 			
 	}else
 	{
@@ -60,7 +67,34 @@ $.fn.jFormslider=function(options)
 	var width=options.width;
 	var height=options.height;
 	var widthpc=width*lilength*100;
-	var navigation_div='<div>'+prev_button+next_button+'</div>';
+	var errorspan="";
+	var errorclasses=splitclass($.trim(options.error_class));
+	var error_selector='.'+errorclasses.join('.');
+	var submit_element="";
+	if(options.submit_btn)
+	{
+		submit_element='<button type="submit" class="'+options.submit_class+'"  style="float:right">'+options.texts.submit+'</button>';
+		
+	}
+		if(options.error_element)
+		{
+			if(options.error_position=="inside")
+			{
+				errorspan="<span class='"+options.error_class+"' style='display:none'></span>";
+			}else
+			{
+			
+				$(this).after(msgspan);
+			}
+		
+		}else
+		{
+		errorspan="";
+		
+		}
+	
+	
+	var navigation_div='<div class="'+options.nav_class+'">'+prev_button+errorspan+next_button+'</div>';
 	var divcss=
 	{
 		"width":width+"px",
@@ -83,7 +117,7 @@ $.fn.jFormslider=function(options)
 	$(this).css(divcss);
 	$(this).find('ul').css(ulcss);
 	$(this).find('li').css(licss);
-	$(this).after(msgspan);
+	
 	if($(this).find('li:first').hasAttr('call-before'))
 		{
 			var func=$(this).find('li:first').attr('call-before');
@@ -94,25 +128,34 @@ $.fn.jFormslider=function(options)
 	{
 		$(this).find('li').each(function(index,element){
 		
-			if(index==0)
+			if(index==0 || $(this).hasAttr('no-prev'))
 			{
-				$(this).append('<div>'+next_button+'</div>');
-			}else if(index==lilength-1)
+				$(this).append('<div class="'+options.nav_class+'">'+next_button+errorspan+'</div>');
+			}else if(index==lilength-1 || $(this).hasAttr('no-next'))
 			{
-				$(this).append('<div>'+prev_button+'</div>');
-			}else
+				if(index==lilength-1)
+				{
+					$(this).append('<div class="'+options.nav_class+'">'+errorspan+prev_button+submit_element+'</div>');
+				}else
+				{
+					$(this).append('<div class="'+options.nav_class+'">'+errorspan+prev_button+'</div>');
+				}				
+			
+			}else if(!$(this).hasAttr('no-next-prev'))
 			{
 				$(this).append(navigation_div);
 			}
+			
 		
 		});
 	}
+	
 	$(this).find('li').each(function(index,element){
 		
 		$(this).find('input,select').last().keydown(function(e) {
 			
 			if(e.which==9 )
-			{
+			{	if(options.disabletab)
 				return false;
 			}
 		});
@@ -124,16 +167,38 @@ $.fn.jFormslider=function(options)
 		var numberarray=[96,97,98,99,100,101,102,103,104,105,109,189,8,46,48,49,50,51,52,53,54,55,56,57,9,16]
 						
 		if($.inArray(e.keyCode,numberarray)==-1)
-		{
+		{	if(options.validation)
 			e.preventDefault();
 			
 		}
 		if(e.keyCode>=65 && e.keyCode<=90)
 		{
+			if(options.validation)
 			e.preventDefault();
 			
 		}
 	});	
+	//disable shift tab
+	$("body").keydown(function(e){
+		
+		if(e.which==9 && e.shiftKey)
+		{ console.log('as');
+			if(e.target.nodeName=="INPUT")
+			{
+				var id=e.target.id;
+				$(e.target).parents('li').find('input').each(function(index, element) {
+				   
+				   if($(this).attr('id')==id)
+					{
+						$(e.target).parents('li').find('input:eq('+(index-1)+')').focus();
+						return false;
+					}
+				});
+			}
+			return false;
+		}
+	});
+	
 	$('[prev]').click(function(e){
 		
 		e.preventDefault();
@@ -147,48 +212,88 @@ $.fn.jFormslider=function(options)
 	});
 	$.fn.nextSlide=function(){
 		var current_slide=$(this).get_current_slide();
-		var next_slide=current_slide.next('li');
+		var next_slide=$(this).get_next_slide();
 		var slidestart=false;
-	
-		current_slide.find('input[required],select[required],input[email]').each(function(index,element){
-			if($(this).hasAttr('required'))
-			{
-				if($.trim($(this).val())=='')
+		if(options.validation)
+		{
+			current_slide.find('input[required],select[required],input[email]').each(function(index,element){
+				if($(this).hasAttr('required'))
 				{
-					var msg=$(this).hasAttr('data-msg')?$(this).attr('data-msg'):'Please fill this field';
-					$('#'+randomid).html(msg).show();
-					$(this).focus();
-					slidestart=false;
-					return false;
+					if($.trim($(this).val())=='')
+					{
+						var msg=$(this).hasAttr('data-msg')?$(this).attr('data-msg'):'Please fill this field';
+						if(options.error_position=="inside")
+						{
+							current_slide.find(error_selector).html(msg).show();
+						}else
+						{
+							
+							$('#'+randomid).html(msg).show();
+						
+						}
+						
+						$(this).focus();
+						slidestart=false;
+						return false;
+					}
 				}
-			}
-			
-			if($(this).hasAttr('email'))
-			{
-				if(!emailvalid($.trim($(this).val())))
-				{
-					$('#'+randomid).html('Please Enter a valid email').show();
-					$(this).focus();
-					slidestart=false;
-					return false;
-				}
-			}
-			if($(this).is('select'))
-			{
-				if($.trim($(this).val())=='-1')
-				{
-					var msg=$(this).hasAttr('data-msg')?$(this).attr('data-msg'):'Please fill this field';
-					$('#'+randomid).text(msg).show();
-					$(this).focus();
-					slidestart=false;
-					return false;
-				}
-			}
-				$('#'+randomid).html('').hide();
-				slidestart=true;
-		
 				
-		});
+				if($(this).hasAttr('email'))
+				{
+					if(!emailvalid($.trim($(this).val())))
+					{
+						if(options.error_position=="inside")
+						{
+							current_slide.find(error_selector).html('Please Enter a valid email').show();
+						}else
+						{
+							
+							$('#'+randomid).html('Please Enter a valid email').show();
+						
+						}
+						
+						$(this).focus();
+						slidestart=false;
+						return false;
+					}
+				}
+				if($(this).is('select'))
+				{
+					if($.trim($(this).val())=='-1')
+					{
+						var msg=$(this).hasAttr('data-msg')?$(this).attr('data-msg'):'Please fill this field';
+						if(options.error_position=="inside")
+						{
+							current_slide.find(error_selector).html(msg).show();
+						}else
+						{
+							
+							$('#'+randomid).html(msg).show();
+						
+						}
+						
+						$(this).focus();
+						slidestart=false;
+						return false;
+					}
+				}
+				if(options.error_position=="inside")
+				{
+					current_slide.find(error_selector).html('').hide();
+				}else
+				{
+					
+					$('#'+randomid).html('').hide();
+				
+				}
+				slidestart=true;
+			
+					
+			});
+		}else
+		{
+			slidestart=true;
+		}
 		if(current_slide.find('input[required],select[required],input[email]').length<=0)
 		{
 			slidestart=true;
@@ -278,6 +383,49 @@ $.fn.jFormslider=function(options)
 			return current;		
 		}
 	}
+	$.fn.get_next_slide= function(){
+		var px=Number($this.find('ul').css('margin-left').replace("px",""));
+		var slide=-px/width;
+		var slcount=-2;
+		var current='';
+		$this.find('li').filter(':visible').each(function(index, element) {
+				slcount++;
+				if(slcount==slide)
+				{
+					current=$(this);
+					return false;
+				}
+		});
+		if(current=="")
+		{
+			message('unknown');
+		}else
+		{
+			return current;		
+		}
+	}
+	$.fn.get_prev_slide= function(){
+		var px=Number($this.find('ul').css('margin-left').replace("px",""));
+		var slide=-px/width;
+		var slcount=0;
+		var current='';
+		$this.find('li').filter(':visible').each(function(index, element) {
+				slcount++;
+				if(slcount==slide)
+				{
+					current=$(this);
+					return false;
+				}
+		});
+		if(current=="")
+		{
+			message('unknown');
+		}else
+		{
+			return current;		
+		}
+	}
+	//nextAll('li').filter(':visible').first()
 	
 	$.fn.disableTab=function()
 	{ 
@@ -343,6 +491,10 @@ $.fn.jFormslider=function(options)
 		return rexp.test(email);
 	}
 	
+	function splitclass(str)
+	{
+		return str.split(/\s+/);
+	}
 	
 	
 	

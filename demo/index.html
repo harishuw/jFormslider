@@ -4,23 +4,33 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>jFormslider Demo</title>
 <!-- Latest compiled and minified CSS -->
-<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="../gitignore/jquery-2.0.3.min.js"></script>
 
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="../gitignore/bootstrap.min.css">
 
 <!-- Optional theme -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="../gitignore/bootstrap-theme.min.css">
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="jFormslider.js"></script>
+<script src="../gitignore/bootstrap.min.js"></script>
+<!--script src="jquery-1.10.2.js"></script-->
+
+<script src="../js/jFormslider.js"></script>
+<style>
+
+.nav_class
+{
+
+	margin-top:27px;
+}
+</style>
 <script>
 $(document).ready(function(){
 
 	var options=
 	{
 		width:500,//width of slider
-		height:170,//height of slider
+		height:190,//height of slider
 		next_prev:true,//will show next and prev links
 		next_class:'btn btn-primary btn-xs',//class for next link
 		prev_class:'btn btn-primary btn-xs',//class for prev link
@@ -30,6 +40,11 @@ $(document).ready(function(){
 				prev:'back'//verbiage for prev link
 			  },
 		speed:600,//slider speed
+		error_position:'inside',
+		validation:true,
+		nav_class:'nav_class',
+		submit_class:'btn btn-primary btn-xs green',
+		submit_id:''
 		
 	};
 
@@ -72,19 +87,19 @@ function last_slide()
 				<button type="button" class="btn btn-info" onclick="$('#slider').gotoSlide('slider_end')">Click  here to go to last slide</button>
   			
 				</li>
-				<li>
+				<li style="display:none">
 					<div class="form-group">
 						<label for="exampleInputFile" class="sr-only" >File input</label>
 						<input type="file" id="exampleInputFile" required data-msg="Please upload">
 						
 					</div>
 					<div class="form-group">
-						<label for="exampleInputFile" class="sr-only" >File input</label>
-						<select required>
-					<option value="">ggg</option>
-					<option value="dsfd">hg</option>
-					<option value="dsfd">hghg</option>
-				</select>
+						<label for="exampleInputFile" class="sr-only" >Select</label>
+						<select required id="exampleInputFile">
+								<option value="">Select</option>
+								<option value="dsfd">Option 1</option>
+								<option value="dsfd">Option 2</option>
+						</select>
 						
 					</div>
 				
