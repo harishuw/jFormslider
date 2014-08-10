@@ -8,7 +8,6 @@
 ******huwz1it@gmail.com***************
 **************************************
 */
-
 if("undefined"==typeof jQuery)
 {
 	if('undefined'!==typeof console)
@@ -127,27 +126,47 @@ $.fn.jFormslider=function(options)
 	if(options.next_prev)
 	{
 		$(this).find('li').each(function(index,element){
-		
+			var errspan=errorspan;
+			var nav_div=navigation_div;
+			
+			if($(this).find(error_selector).length>=1)
+			{
+				errspan="";
+				nav_div='<div class="'+options.nav_class+'">'+prev_button+next_button+'</div>';
+			}			
 			if(index==0 || $(this).hasAttr('no-prev'))
 			{
-				$(this).append('<div class="'+options.nav_class+'">'+next_button+errorspan+'</div>');
+				$(this).append('<div class="'+options.nav_class+'">'+next_button+errspan+'</div>');
 			}else if(index==lilength-1 || $(this).hasAttr('no-next'))
 			{
 				if(index==lilength-1)
 				{
-					$(this).append('<div class="'+options.nav_class+'">'+errorspan+prev_button+submit_element+'</div>');
+					$(this).append('<div class="'+options.nav_class+'">'+errspan+prev_button+submit_element+'</div>');
 				}else
 				{
-					$(this).append('<div class="'+options.nav_class+'">'+errorspan+prev_button+'</div>');
+					$(this).append('<div class="'+options.nav_class+'">'+errspan+prev_button+'</div>');
 				}				
 			
 			}else if(!$(this).hasAttr('no-next-prev'))
 			{
-				$(this).append(navigation_div);
+				$(this).append(nav_div);
 			}
 			
 		
 		});
+	}else
+	{
+		$(this).find('li').each(function(index,element){
+			var errspan=errorspan;
+			if($(this).find(error_selector).length>=1)
+			{
+				errspan="";
+			}			
+		
+			$(this).append('<div class="">'+errspan+'</div>');
+				
+		});
+	
 	}
 	
 	$(this).find('li').each(function(index,element){
@@ -425,8 +444,6 @@ $.fn.jFormslider=function(options)
 			return current;		
 		}
 	}
-	//nextAll('li').filter(':visible').first()
-	
 	$.fn.disableTab=function()
 	{ 
 		$(this).keydown(function(e) {
@@ -436,6 +453,17 @@ $.fn.jFormslider=function(options)
 				return false;
 			}
 		});
+	}
+	
+	$.fn.get_page_nos=function()
+	{
+		var px=Number($this.css('margin-left').replace("px",""));
+		var slide_nos=(-px/790)+1;
+		var count=1;
+		var did='';
+		count=lilength;
+		var pages={current:slide_nos,total:count};
+		return pages;
 	}
 	function form_message()
 	{
