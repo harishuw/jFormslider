@@ -30,7 +30,7 @@ $(document).ready(function(){
 	var options=
 	{
 		width:500,//width of slider
-		height:195,//height of slider
+		height:217,//height of slider
 		next_prev:true,//will show next and prev links
 		next_class:'btn btn-primary btn-xs',//class for next link
 		prev_class:'btn btn-primary btn-xs',//class for prev link
@@ -44,7 +44,11 @@ $(document).ready(function(){
 		validation:true,
 		nav_class:'nav_class',
 		submit_class:'btn btn-primary btn-xs green',
-		submit_id:''
+		submit_id:'',
+		success:function(){
+		
+		alert("Success ");
+		},
 		
 	};
 
@@ -87,7 +91,7 @@ function last_slide()
 				<button type="button" class="btn btn-info" onclick="$('#slider').gotoSlide('slider_end')">Click  here to go to last slide</button>
   			
 				</li>
-				<li style="display:none">
+				<li hide>
 					<div class="form-group">
 						<label for="exampleInputFile" class="sr-only" >File input</label>
 						<input type="file" id="exampleInputFile" required data-msg="Please Select A File">
@@ -105,6 +109,10 @@ function last_slide()
 				
 				</li>
 				<li data-id="slider_end" call-before="last_slide()">
+				<div class="form-group">
+					<label class="sr-only" for="lastpage">Something</label>
+					<input type="text" class="form-control" id="lastpage" placeholder="Enter something" required data-msg="This is required">
+				</div>
 				<div class="alert alert-success">
 				slider ends
 				

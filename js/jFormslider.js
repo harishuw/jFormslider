@@ -49,6 +49,7 @@ $.fn.jFormslider=function(options)
 		ajax:false,
 		validation:true,
 		disabletab:true,
+		success:"",
 	}
 	if(arguments.length>0)
 	{
@@ -65,14 +66,14 @@ $.fn.jFormslider=function(options)
 	var prev_button='<a class="'+options.prev_class+'" prev style="float:left">'+options.texts.prev+'</a>';
 	var width=options.width;
 	var height=options.height;
-	var widthpc=width*lilength*100;
+	var widthpc=width*lilength;
 	var errorspan="";
 	var errorclasses=splitclass($.trim(options.error_class));
 	var error_selector='.'+errorclasses.join('.');
 	var submit_element="";
 	if(options.submit_btn)
 	{
-		submit_element='<button type="submit" class="'+options.submit_class+'"  style="float:right">'+options.texts.submit+'</button>';
+		submit_element='<button submit type="submit" class="'+options.submit_class+'"  style="float:right">'+options.texts.submit+'</button>';
 		
 	}
 		if(options.error_element)
@@ -168,7 +169,7 @@ $.fn.jFormslider=function(options)
 		});
 	
 	}
-	
+	$(this).find('li[hide]').hide();
 	$(this).find('li').each(function(index,element){
 		
 		$(this).find('input,select').last().keydown(function(e) {
@@ -201,7 +202,7 @@ $.fn.jFormslider=function(options)
 	$("body").keydown(function(e){
 		
 		if(e.which==9 && e.shiftKey)
-		{ console.log('as');
+		{ 
 			if(e.target.nodeName=="INPUT")
 			{
 				var id=e.target.id;
@@ -228,6 +229,100 @@ $.fn.jFormslider=function(options)
 		
 		e.preventDefault();
 		$this.nextSlide();
+	});
+	$('[submit]').click(function(e){
+		e.preventDefault();
+		var current_slide=$this.get_current_slide();
+		var slidestart=false;
+		if(options.validation)
+		{
+			current_slide.find('input[required],select[required],input[email]').each(function(index,element){
+				if($(this).hasAttr('required'))
+				{
+					if($.trim($(this).val())=='')
+					{
+						var msg=$(this).hasAttr('data-msg')?$(this).attr('data-msg'):'Please fill this field';
+						if(options.error_position=="inside")
+						{
+							current_slide.find(error_selector).html(msg).show();
+						}else
+						{
+							
+							$('#'+randomid).html(msg).show();
+						
+						}
+						
+						$(this).focus();
+						slidestart=false;
+						return false;
+					}
+				}
+				
+				if($(this).hasAttr('email'))
+				{
+					if(!emailvalid($.trim($(this).val())))
+					{
+						if(options.error_position=="inside")
+						{
+							current_slide.find(error_selector).html('Please Enter a valid email').show();
+						}else
+						{
+							
+							$('#'+randomid).html('Please Enter a valid email').show();
+						
+						}
+						
+						$(this).focus();
+						slidestart=false;
+						return false;
+					}
+				}
+				if($(this).is('select'))
+				{
+					if($.trim($(this).val())=='-1')
+					{
+						var msg=$(this).hasAttr('data-msg')?$(this).attr('data-msg'):'Please fill this field';
+						if(options.error_position=="inside")
+						{
+							current_slide.find(error_selector).html(msg).show();
+						}else
+						{
+							
+							$('#'+randomid).html(msg).show();
+						
+						}
+						
+						$(this).focus();
+						slidestart=false;
+						return false;
+					}
+				}
+				if(options.error_position=="inside")
+				{
+					current_slide.find(error_selector).html('').hide();
+				}else
+				{
+					
+					$('#'+randomid).html('').hide();
+				
+				}
+				slidestart=true;
+			
+					
+			});
+		}else
+		{
+			slidestart=true;
+		}
+		if(current_slide.find('input[required],select[required],input[email]').length<=0)
+		{
+			slidestart=true;
+		}	
+		if(slidestart && options.success!="")
+		{
+			options.success();
+		
+		}
 	});
 	$.fn.nextSlide=function(){
 		var current_slide=$(this).get_current_slide();
@@ -386,17 +481,21 @@ $.fn.jFormslider=function(options)
 		var slide=-px/width;
 		var slcount=-1;
 		var current='';
+		
 		$this.find('li').filter(':visible').each(function(index, element) {
 				slcount++;
+				
 				if(slcount==slide)
 				{
 					current=$(this);
 					return false;
 				}
 		});
+		
 		if(current=="")
 		{
-			message('unknown');
+			
+			message('no_cs');
 		}else
 		{
 			return current;		
@@ -417,7 +516,8 @@ $.fn.jFormslider=function(options)
 		});
 		if(current=="")
 		{
-			message('unknown');
+			message('no_ns');
+			
 		}else
 		{
 			return current;		
@@ -438,7 +538,7 @@ $.fn.jFormslider=function(options)
 		});
 		if(current=="")
 		{
-			message('unknown');
+			message('no_ps');
 		}else
 		{
 			return current;		
@@ -501,7 +601,32 @@ $.fn.jFormslider=function(options)
 								throw new Error("Sorry!!There is no jquery please get jquery");
 							}
 			
-						break;	
+						break;
+			case 'no_cs':msg='%c Sorry!! There is no current slide Some Unknown Error Occured.Please try again ';
+						  style='color: red';
+						  style1=style+';font-style:italic;font-size:15px;font-weight:bold;';
+						  if('undefined'!==typeof console)
+							{
+								console.log(msg,style);
+							}
+						  break;
+			case 'no_ns':msg='%c Sorry!! There is no next slide ';
+						  style='color: red';
+						  style1=style+';font-style:italic;font-size:15px;font-weight:bold;';
+						  if('undefined'!==typeof console)
+							{
+								console.log(msg,style);
+							}
+						  break;
+			case 'no_ps':msg='%c Sorry!! There is no previous slide';
+						  style='color: red';
+						  style1=style+';font-style:italic;font-size:15px;font-weight:bold;';
+						  if('undefined'!==typeof console)
+							{
+								console.log(msg,style);
+							}
+						  break;			  
+						  
 			case 'unknown':msg='%c Sorry!! Some Unknown Error Occured.Please try again ';
 						  style='color: red';
 						  style1=style+';font-style:italic;font-size:15px;font-weight:bold;';
