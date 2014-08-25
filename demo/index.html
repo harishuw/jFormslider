@@ -91,7 +91,7 @@ function last_slide()
 				<button type="button" class="btn btn-info" onclick="$('#slider').gotoSlide('slider_end')">Click  here to go to last slide</button>
   			
 				</li>
-				<li hide>
+				<li ajax-url="http://localhost/api/" ajax-data='{"name":"testy tester"}'>
 					<div class="form-group">
 						<label for="exampleInputFile" class="sr-only" >File input</label>
 						<input type="file" id="exampleInputFile" required data-msg="Please Select A File">
