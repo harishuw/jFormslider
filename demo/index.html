@@ -61,6 +61,11 @@ function last_slide()
 	alert("you are going to reach last slide if this function retuned true");
 	return true;
 }
+function next_on()
+{
+$('[ajax-url]').show()
+return true;
+}
 
 </script>
 </head>
@@ -79,7 +84,7 @@ function last_slide()
 	  <!--slider starts-->
 		<div id="slider" class="form">
 			<ul>
-				<li data-id="slider_start">
+				<li data-id="slider_start" call-after="next_on()">
 				<div class="form-group">
 					<label class="sr-only" for="exampleInputEmail2">Email address</label>
 					<input type="text" id="em1" class="form-control" data-toggle="tooltip" data-placement="top" title="Enter valid email" placeholder="Enter email" email>
@@ -91,7 +96,7 @@ function last_slide()
 				<button type="button" class="btn btn-info" onclick="$('#slider').gotoSlide('slider_end')">Click  here to go to last slide</button>
   			
 				</li>
-				<li ajax-url="http://localhost/api/" ajax-data='{"name":"testy tester"}'>
+				<li ajax-url="http://localhost/api/" ajax-data='{"name":"testy tester"}' hide >
 					<div class="form-group">
 						<label for="exampleInputFile" class="sr-only" >File input</label>
 						<input type="file" id="exampleInputFile" required data-msg="Please Select A File">
@@ -131,7 +136,8 @@ function last_slide()
 Form should be in ul li format
 <!--ul li-->
 
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;div</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;slider&quot;</span><span style="color: #007700">&gt;</span>
+<!-- HTML generated using hilite.me -->
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;div</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;slider&quot;</span><span style="color: #007700">&gt;</span>
 	<span style="color: #007700">&lt;ul&gt;</span>
 		<span style="color: #007700">&lt;li&gt;</span>--form componants--<span style="color: #007700">&lt;/li&gt;</span>
 		<span style="color: #007700">&lt;li&gt;</span>--form componants--<span style="color: #007700">&lt;/li&gt;</span>
@@ -255,6 +261,7 @@ $(document).ready(function(){
 
 
 });
+
 
 </script>
 
