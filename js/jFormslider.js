@@ -20,6 +20,7 @@ if("undefined"==typeof jQuery)
 }
 $.fn.jFormslider=function(options)
 {
+	var version="1.0.4";
 	var $this=$(this);
 	var lilength=$this.find('li').length;
 	var randomid='jformslider'+new Date().valueOf();
@@ -573,7 +574,7 @@ $.fn.jFormslider=function(options)
 		var style=""
 		switch(type)
 		{
-			case 'startup':msg='%c Congratulations!!!  You are using %cjFormslider v 1.1';
+			case 'startup':msg='%c Congratulations!!!  You are using %cjFormslider '+version;
 						  style='color: green';
 						  if('undefined'!==typeof console)
 							{
