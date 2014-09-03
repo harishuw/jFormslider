@@ -457,9 +457,25 @@ $.fn.jFormslider=function(options)
 	
 	$.fn.prevSlide=function(){
 		
-		var px=Number($(this).find('ul').css('margin-left').replace("px",""));
-		px+=width;
-		$(this).find('ul').animate({ marginLeft: px+'px' }, options.speed);
+		var slideback=true;
+		var pre_slide=$(this).get_prev_slide();
+		if(pre_slide.hasAttr('call-prev'))
+				{
+					var func=pre_slide.attr('call-prev');
+					if(!eval(func))
+					{
+						slideback=false;
+						return false;
+					}else
+						slideback=true;
+				}else
+					slideback=true;
+		if(slideback)
+		{
+			var px=Number($(this).find('ul').css('margin-left').replace("px",""));
+			px+=width;
+			$(this).find('ul').animate({ marginLeft: px+'px' }, options.speed);
+		}
 	};
 	$.fn.gotoSlide= function(slideid){
 		
