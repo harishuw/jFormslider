@@ -416,7 +416,8 @@ $.fn.jFormslider=function(options)
 		var count=0;
 		var found=false;
 		var slidethis=$(this);
-		$(this).find('li').each(function(index, element) {
+		$('[data-id="'+slideid+'"]').show();
+		$(this).find('li').filter(':visible').each(function(index, element) {
 			count++;
 			if($(this).hasAttr('data-id'))
 			{	if($(this).attr('data-id')==$.trim(slideid))
@@ -430,7 +431,7 @@ $.fn.jFormslider=function(options)
 		if(found)
 		{
 			var gslide=$('[data-id="'+slideid+'"]');
-			gslide.show();
+			
 			if(gslide.hasAttr('ajax-url'))
 			{	if(gslide.attr('ajax-url')!="")
 				{
