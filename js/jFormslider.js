@@ -34,6 +34,7 @@ $.fn.jFormslider=function(options)
 		error_class:'error',
 		error_element:true,
 		error_position:'',
+		mobile:false,
 		texts:{
 				next:'next',
 				prev:'prev',
@@ -241,6 +242,27 @@ $.fn.jFormslider=function(options)
 		if(slidestart && options.submit_handler!="")
 			options.submit_handler();
 	});
+	if(!$.mobile)
+	{
+		if(options.mobile)
+		{
+			message('nomobilejq');
+		}
+		options.mobile=false
+	}
+		
+		
+	if(options.mobile)
+	{
+		$this.on("swiperight",function(){
+			$this.prevSlide();
+		});
+		$this.on("swipeleft",function(){
+			
+			$this.nextSlide();
+		});
+	}
+	
 	$.fn.nextSlide=function(){
 		var current_slide=$(this).get_current_slide();
 		var next_slide=$(this).get_next_slide();
@@ -575,8 +597,18 @@ $.fn.jFormslider=function(options)
 							{
 								throw new Error("Sorry!!There is no jquery please get jquery");
 							}
-			
 						break;
+			case "nomobilejq":
+						  msg='%c Sorry!!There is no jquery mobile please get jquery mobile';
+						  style='color: red';
+						    if('undefined'!==typeof console)
+							{
+								console.log(msg,style);
+							}else
+							{
+								throw new Error("Sorry!!There is no jquery mobile please get jquery mobile");
+							}
+						break;	
 			case 'no_cs':msg='%c Sorry!! There is no current slide Some Unknown Error Occured.Please try again ';
 						  style='color: red';
 						  style1=style+';font-style:italic;font-size:15px;font-weight:bold;';
