@@ -10,10 +10,10 @@
 		"ajax"
         
     ],
-    "version": "1.0.4",
+    "version": "1.0.5",
     "author": {
         "name": "Harish U Warrier",
-		"email": "support@jformslider.com",
+		"email": "jfs@jformslider.com",
         "url": "http://jformslider.com/about"
     },
     "licenses": [
