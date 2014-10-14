@@ -87,4 +87,4 @@ you should specify a attribute in li called 'data-id' for this
 $('#slider').gotoSlide('middle_page')
 ```
 
-More features are in development stage please report bugs to huwz1it@gmail.com
+More features are in development stage please report bugs to bugs@jformslider.com
