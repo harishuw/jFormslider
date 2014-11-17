@@ -55,7 +55,12 @@ $.fn.jFormslider=function(options)
 		options=$.extend(defaults,options);
 		options.texts=text;
 	}else
-		options=defaults;
+            options=defaults;
+        if(options.height!='auto')
+            options.height=get_height(options.height);
+        options.width=get_width(options.width);
+        
+        console.log(options)
 	var msgspan='<div class="'+options.error_class+'" id="'+randomid+'" style="display:none"></div>';
 	var next_button='<a class="'+options.next_class+'" next style="float:right">'+options.texts.next+'</a>';
 	var prev_button='<a class="'+options.prev_class+'" prev style="float:left">'+options.texts.prev+'</a>';
@@ -751,6 +756,48 @@ $.fn.jFormslider=function(options)
 	{
 		return str.split(/\s+/);
 	}
+        function get_width(w)
+        {
+            w=Number(w);
+            var screen=$(window).width();
+            if(screen>361 && screen<640)
+            {
+                return w*40/100;
+            }else if(screen>641 && screen<767)
+            {
+                return w*65/100;
+            }else if(screen>768 && screen<991)
+            {
+                 return w*75/100;
+            }else if(screen>992 && screen<1199)
+            {
+                return w*100/100;
+            }else
+            {
+                 return w*100/100;
+            }
+        }
+        function get_height(w)
+        { 
+            w=Number(w);
+            var screen=$(window).width();
+            if(screen>361 && screen<640)
+            {
+                return w*70/100;
+            }else if(screen>641 && screen<767)
+            {
+                return w*70/100;
+            }else if(screen>768 && screen<991)
+            {
+                 return w*75/100;
+            }else if(screen>992 && screen<1199)
+            {
+                return w*100/100;
+            }else
+            {
+                 return w*100/100;
+            }
+        }
 	
 };
 $.fn.hasAttr = function(name) 
