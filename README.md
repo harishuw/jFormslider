@@ -3,7 +3,7 @@
 jFormslider v1.0.2 is a jquery pluggin where we can convert a big form in to a slider
 Form should be in ul li format
 
-[Demo](http://jformslider.0fees.us)
+[Demo](http://jformslider.com)
 ```
 #!html
 
@@ -87,4 +87,4 @@ you should specify a attribute in li called 'data-id' for this
 $('#slider').gotoSlide('middle_page')
 ```
 
-More features are in development stage please report bugs to huwz1it@gmail.com
+More features are in development stage please report bugs to bugs@jformslider.com
