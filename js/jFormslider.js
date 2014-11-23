@@ -10,10 +10,11 @@
 **************************************
 */
 if("undefined"==typeof jQuery)
-{	if('undefined'!==typeof console)
-		console.log('%c Sorry!!There is no jquery please get jquery ','color: red');
-	else
-		throw new Error("Sorry!!There is no jquery please get jquery");
+{
+    if('undefined'!==typeof console)
+        console.log('%c Sorry!!There is no jquery please get jquery ','color: red');
+    else
+        throw new Error("Sorry!!There is no jquery please get jquery");
 }
 $.fn.jFormslider=function(options)
 {
@@ -24,43 +25,45 @@ $.fn.jFormslider=function(options)
 	var ajaxprocessing=false;
 	var defaults=
 	{
-		width:600,
-		height:300,
-		next_prev:true,
-		submit_btn:true,
-		submit_class:'',
-		next_class:'',
-		prev_class:'',
-		nav_class:'',
-		error_class:'error',
-		error_element:true,
-		error_position:'',
-		mobile:false,
-		texts:{
-				next:'next',
-				prev:'prev',
-				submit:'submit'
-			  },
-		ajax_repeat:false,	
-		speed:400,
-		bootstrap:false,
-		full_navigation:true,
-		validation:true,
-		disabletab:true,
-		submit_handler:"",
+            width:600,
+            height:300,
+            animation:'horizontal',
+            next_button:true,
+            prev_button:true,
+            button_placement:'bottom',
+            submit_btn:true,
+            submit_class:'',
+            next_class:'',
+            prev_class:'',
+            nav_class:'',
+            error_class:'error',
+            error_element:true,
+            error_position:'',
+            mobile:false,
+            texts:{
+                    next:'next',
+                    prev:'prev',
+                    submit:'submit'
+                  },
+            ajax_repeat:false,	
+            speed:400,
+            bootstrap:false,
+            full_navigation:true,
+            validation:true,
+            disabletab:true,
+            submit_handler:"",
 	}
 	if(arguments.length>0)
 	{
-		var text=$.extend(defaults.texts,options.texts);
-		options=$.extend(defaults,options);
-		options.texts=text;
+            var text=$.extend(defaults.texts,options.texts);
+            options=$.extend(defaults,options);
+            options.texts=text;
 	}else
             options=defaults;
         if(options.height!='auto')
             options.height=get_height(options.height);
         options.width=get_width(options.width);
         
-        console.log(options)
 	var msgspan='<div class="'+options.error_class+'" id="'+randomid+'" style="display:none"></div>';
 	var next_button='<a class="'+options.next_class+'" next style="float:right">'+options.texts.next+'</a>';
 	var prev_button='<a class="'+options.prev_class+'" prev style="float:left">'+options.texts.prev+'</a>';
@@ -75,55 +78,30 @@ $.fn.jFormslider=function(options)
 		submit_element='<button submit type="submit" class="'+options.submit_class+'"  style="float:right">'+options.texts.submit+'</button>';
 	if(options.error_element)
 	{
-		if(options.error_position=="inside")
-			errorspan="<span class='"+options.error_class+"' style='display:none'></span>";
-		else
-			$(this).after(msgspan);
+            if(options.error_position=="inside")
+                errorspan="<span class='"+options.error_class+"' style='display:none'></span>";
+            else
+                $(this).after(msgspan);
 	}else
-		errorspan="";
+	errorspan="";
 	var navigation_div='<div class="'+options.nav_class+'">'+prev_button+errorspan+next_button+'</div>';
 	var jformslider_style="<style tag='jformslider'>.jformslider {	width:"+width+"px;height:"+height+";overflow:hidden;}"+
 					".jformslider ul {margin:0px;padding:0px;list-style:none;width:"+widthpc+"%;}"+
 					".jformslider li {display:inline;float:left;width:"+width+"px;}"+
 				"</style>";
+          // jformslider_style="";             
 				if($('style[tag="jformslider"]').length<=0)
 					$('head').append(jformslider_style);
 	$(this).addClass('jformslider');
 	if($(this).find('li:first').hasAttr('call-before'))
 	{
-		var func=$(this).find('li:first').attr('call-before');
-		eval(func);		
+            var func=$(this).find('li:first').attr('call-before');
+            eval(func);		
 	}
-	if(options.next_prev)
-	{
-		$(this).find('li').each(function(index,element){
-			var errspan=errorspan;
-			var nav_div=navigation_div;
-			if($(this).find(error_selector).length>=1)
-			{
-				errspan="";
-				nav_div='<div class="'+options.nav_class+'">'+prev_button+next_button+'</div>';
-			}			
-			if(index==0 || $(this).hasAttr('no-prev'))
-				$(this).append('<div class="'+options.nav_class+'">'+next_button+errspan+'</div>');
-			else if(index==lilength-1 || $(this).hasAttr('no-next'))
-			{
-				if(index==lilength-1)
-					$(this).append('<div class="'+options.nav_class+'">'+errspan+prev_button+submit_element+'</div>');
-				else
-					$(this).append('<div class="'+options.nav_class+'">'+errspan+prev_button+'</div>');
-			}else if(!$(this).hasAttr('no-next-prev'))
-				$(this).append(nav_div);
-		});
-	}else
-	{
-		$(this).find('li').each(function(index,element){
-			var errspan=errorspan;
-			if($(this).find(error_selector).length>=1)
-				errspan="";
-			$(this).append('<div class="">'+errspan+'</div>');
-		});
-	}
+        $(this).find('li').each(function(index,element){
+            set_nav($(this),index);
+        });
+	
 	$(this).find('li[hide]').hide();
 	$(this).find('li').each(function(index,element){
 		$(this).find('input,select').last().keydown(function(e) {
@@ -481,7 +459,8 @@ $.fn.jFormslider=function(options)
 		{
 			var px=Number($(this).find('ul').css('margin-left').replace("px",""));
 			px-=width;
-			$(this).find('ul').animate({ marginLeft: px+'px' }, options.speed);
+                        jf_animate($(this),px+'px');
+			//$(this).find('ul').animate({ marginLeft: px+'px' }, options.speed);
 		}
 	};
 	
@@ -579,67 +558,77 @@ $.fn.jFormslider=function(options)
 	};
 	message('startup');
 	$.fn.get_slide_data=function(id){
-		
-		var opjson=Object();
-		if(arguments.length<=0)
-			id="";
-		if($.trim(id)=="")
-		{
-			$this.find('input,select,textarea').each(function(index,element){
-				if($(this).hasAttr('name'))
-					opjson[$(this).attr('name')]=$(this).val();
-				else
-					opjson[$(this).attr('id')]=$(this).val();
-			});
-		
-		}else
-		{
-			$('[data-id="'+id+'"]').find('input,select,textarea').each(function(index,element){
-				if($(this).hasAttr('name'))
-					opjson[$(this).attr('name')]=$(this).val();
-				else
-					opjson[$(this).attr('id')]=$(this).val();
-			});
-		
-		}
-		//console.log(opjson);
-		return opjson;
+	    var opjson=Object();
+            if(arguments.length<=0)
+                id="";
+            var $ele=$this;
+            if(!$.trim(id)=="")
+                $ele=$('[data-id="'+id+'"]')
+
+            $ele.find('input,select,textarea').each(function(index,element){
+                if($(this).is(':radio'))
+                {
+                    if($(this).hasAttr('name'))
+                    {
+                        var rad_name=$(this).attr('name');
+                        opjson[rad_name]=$('[name='+rad_name+']:checked').val();
+                    }
+                }else if($(this).is(':checkbox'))
+                {
+                    if($(this).hasAttr('name'))
+                    {
+                        var check_name=$(this).attr('name');
+                        var carray=Array();
+                        $('[name='+check_name+']:checked').each(function(index,element){
+                            carray.push($(this).val());
+                        });
+                        opjson[check_name]=carray;
+                    }
+                }else
+                {
+                    if($(this).hasAttr('name'))
+                        opjson[$(this).attr('name')]=$(this).val();
+                    else
+                        opjson[$(this).attr('id')]=$(this).val();
+                }
+             });
+            return opjson;
 	};
 	$.fn.get_current_slide= function(){
-		var px=Number($this.find('ul').css('margin-left').replace("px",""));
-		var slide=-px/width;
-		var slcount=-1;
-		var current='';
-		$this.find('li').filter(':visible').each(function(index, element) {
-			slcount++;
-			if(slcount==slide)
-			{
-				current=$(this);
-				return false;
-			}
-		});
-		if(current=="")
-			message('no_cs');
-		else
-			return current;		
+            var px=Number($this.find('ul').css('margin-left').replace("px",""));
+            var slide=-px/width;
+            var slcount=-1;
+            var current='';
+            $this.find('li').filter(':visible').each(function(index, element) {
+                    slcount++;
+                    if(slcount==slide)
+                    {
+                            current=$(this);
+                            return false;
+                    }
+            });
+            if(current=="")
+                message('no_cs');
+            else
+                return current;		
 	}
 	$.fn.get_next_slide= function(){
-		var px=Number($this.find('ul').css('margin-left').replace("px",""));
-		var slide=-px/width;
-		var slcount=-2;
-		var current='';
-		$this.find('li').filter(':visible').each(function(index, element) {
-			slcount++;
-			if(slcount==slide)
-			{
-				current=$(this);
-				return false;
-			}
-		});
-		if(current=="")
-			message('no_ns');
-		else
-			return current;		
+            var px=Number($this.find('ul').css('margin-left').replace("px",""));
+            var slide=-px/width;
+            var slcount=-2;
+            var current='';
+            $this.find('li').filter(':visible').each(function(index, element) {
+                    slcount++;
+                    if(slcount==slide)
+                    {
+                            current=$(this);
+                            return false;
+                    }
+            });
+            if(current=="")
+                message('no_ns');
+            else
+                return current;		
 	}
 	$.fn.get_prev_slide= function(){
 		var px=Number($this.find('ul').css('margin-left').replace("px",""));
@@ -650,25 +639,61 @@ $.fn.jFormslider=function(options)
 			slcount++;
 			if(slcount==slide)
 			{
-				current=$(this);
-				return false;
+                            current=$(this);
+                            return false;
 			}
 		});
 		if(current=="")
 			message('no_ps');
 		else
 			return current;		
-	}
+	};
 	$.fn.get_slide_details=function()
 	{
 		var px=Number($this.css('margin-left').replace("px",""));
-		var slide_nos=(-px/790)+1;
+                var w=options.width;
+		var slide_nos=(-px/w)+1;
 		var count=1;
 		var did='';
 		count=lilength;
 		var pages={current:slide_nos,total:count};
 		return pages;
-	}
+	};
+        function set_nav($this,index)
+        {
+            var n=next_button;
+            var p=prev_button;
+            var er=errorspan;
+            var sub="";
+            if(!options.next_button){n="";}
+            if(!options.prev_button){p="";}
+            if($this.hasAttr('no-next') || $this.hasAttr('data-no-next')){n="";}
+            if($this.hasAttr('no-prev') || $this.hasAttr('data-no-prev')){p="";}
+            if($this.hasAttr('no-next-prev') || $this.hasAttr('data-no-next-prev')){n=p="";}
+            if($this.find(error_selector).length>=1){er="";}
+            if(index==0){p="";}
+            if(index==lilength-1){n="";sub=submit_element;}
+            var nv='<div class="'+options.nav_class+'">'+p+er+n+sub+'</div>';
+            if($this.hasAttr('data-button-placement') || $this.hasAttr('button-placement'))
+            {
+                $pl=$this.hasAttr('data-button-placement')?$this.attr('data-button-placement'):'';
+                $pl=$this.hasAttr('button-placement')?$this.attr('button-placement'):'';
+                if($.trim($pl)=="top")
+                    $this.prepend(nv);
+                else
+                    $this.append(nv);
+            }else if($.trim(options.button_placement)=="top")
+                $this.prepend(nv);
+            else
+                $this.append(nv);
+        }
+        function jf_animate(el,px)
+        {  
+            if(options.animation=="vertical")
+                el.find('ul').animate({ marginTop:px }, options.speed);
+            else
+                el.find('ul').animate({ marginLeft:px }, options.speed);
+        }
 	function message(type)
 	{
 		var msg='';
