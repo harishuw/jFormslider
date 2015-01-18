@@ -4,15 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>jFormslider Demo</title>
 <!-- Latest compiled and minified CSS -->
-<script src="../gitignore/jquery-2.0.3.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 
-<link rel="stylesheet" href="../gitignore/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
 <!-- Optional theme -->
-<link rel="stylesheet" href="../gitignore/bootstrap-theme.min.css">
+
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="../gitignore/bootstrap.min.js"></script>
+<script src="http:////maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <!--script src="jquery-1.10.2.js"></script-->
 
 <script src="../js/jFormslider.js"></script>
@@ -72,7 +72,7 @@ return true;
 
 <body>
 <div class="page-header">
-  <h1>jFormslider v 1.0.2 <small> A form in form of a slider</small></h1>
+  <h1>jFormslider v 1.0.8 <small> A form in form of a slider</small></h1>
 </div>
 
 <div class="container">
@@ -96,7 +96,7 @@ return true;
 				<button type="button" class="btn btn-info" onclick="$('#slider').gotoSlide('slider_end')">Click  here to go to last slide</button>
   			
 				</li>
-				<li ajax-url="http://localhost/api/" ajax-data='{"name":"testy tester"}' hide >
+				<li  hide >
 					<div class="form-group">
 						<label for="exampleInputFile" class="sr-only" >File input</label>
 						<input type="file" id="exampleInputFile" required data-msg="Please Select A File">
@@ -113,7 +113,7 @@ return true;
 					</div>
 				
 				</li>
-				<li data-id="slider_end" call-before="last_slide()">
+				<li data-id="slider_end" data-callbefore="last_slide()">
 				<div class="form-group">
 					<label class="sr-only" for="lastpage">Something</label>
 					<input type="text" class="form-control" id="lastpage" placeholder="Enter something" required data-msg="This is required">
@@ -131,8 +131,8 @@ return true;
 		<!--slider ends-->
 	</div>
 	<div class="form col-md-6">
-	<h4>jFormslider v1.0.2</h4>
-	jFormslider v1.0.2 is a jquery pluggin where we can convert a big form in to a slider<br/>
+	<h4>jFormslider v1.0.8</h4>
+	jFormslider v1.0.8 is a jquery pluggin where we can convert a big form in to a slider<br/>
 Form should be in ul li format
 <!--ul li-->
 
@@ -178,7 +178,7 @@ options<span style="color: #333333">=</span>{
 			<!--usage-->
 		<div>
 		<div class="col-xs-6 col-md-6" style="margin-top:10px">
-		
+		<a type="button" class="btn btn-success" href="http://jformslider.com">Website</a>
 		<a type="button" class="btn btn-success download" href="https://github.com/harishuw/jFormslider">Download From github</a>
 		
 		<a type="button" class="btn btn-success download" href="http://plugins.jquery.com/jformslider">jquery Pluggin site</a>
@@ -228,10 +228,9 @@ you should specify a attribute in li called 'data-id' for this
 <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">$(<span style="background-color: #fff0f0">&#39;#slider&#39;</span>).gotoSlide(<span style="background-color: #fff0f0">&#39;middle_page&#39;</span>)
 </pre></div>
 <!-- HTML generated using hilite.me -->
+For more options and docs visit <a href="http://jformslider.com">jformslider.com</a>
 
-More features are in development stage
-
-please report bugs to huwz1it@gmail.com			
+please report bugs to bugs@jformslider.com			
 		  </div>
 	</div>
 	  <!--2nd-->

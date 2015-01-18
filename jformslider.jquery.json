@@ -1,16 +1,17 @@
 {
     "name": "jformslider",
-    "title": "A form in slider form",
-    "description": "jFormslider is a jquey plugin which you can implement a form in form of a slider",
+    "title": "A normal Form to sliding form plugin",
+    "description": "jFormslider is a jquey plugin which you can convert a form in to sliding form",
     "keywords": [
         "jformslider",
         "validation",
         "forms",
 		"slider",
-		"ajax"
+		"ajax",
+		"form wizard"
         
     ],
-    "version": "1.0.5",
+    "version": "1.0.8",
     "author": {
         "name": "Harish U Warrier",
 		"email": "jfs@jformslider.com",
