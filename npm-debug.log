@@ -1,0 +1,115 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'c:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'publish' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.32
+4 verbose publish [ '.' ]
+5 verbose cache add [ '.', null ]
+6 verbose cache add name=undefined spec="." args=[".",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: '.',
+7 verbose parsed url   path: '.',
+7 verbose parsed url   href: '.' }
+8 silly lockFile 3a52ce78- .
+9 verbose lock . C:\Users\compaq\AppData\Roaming\npm-cache\3a52ce78-.lock
+10 verbose tar pack [ 'C:\\Users\\compaq\\AppData\\Roaming\\npm-cache\\jformslider\\1.0.8\\package.tgz',
+10 verbose tar pack   '.' ]
+11 verbose tarball C:\Users\compaq\AppData\Roaming\npm-cache\jformslider\1.0.8\package.tgz
+12 verbose folder .
+13 info prepublish jformslider@1.0.8
+14 silly lockFile 1f1177db-tar tar://.
+15 verbose lock tar://. C:\Users\compaq\AppData\Roaming\npm-cache\1f1177db-tar.lock
+16 silly lockFile 96de0b13-he-jformslider-1-0-8-package-tgz tar://C:\Users\compaq\AppData\Roaming\npm-cache\jformslider\1.0.8\package.tgz
+17 verbose lock tar://C:\Users\compaq\AppData\Roaming\npm-cache\jformslider\1.0.8\package.tgz C:\Users\compaq\AppData\Roaming\npm-cache\96de0b13-he-jformslider-1-0-8-package-tgz.lock
+18 silly lockFile 1f1177db-tar tar://.
+19 silly lockFile 1f1177db-tar tar://.
+20 silly lockFile 96de0b13-he-jformslider-1-0-8-package-tgz tar://C:\Users\compaq\AppData\Roaming\npm-cache\jformslider\1.0.8\package.tgz
+21 silly lockFile 96de0b13-he-jformslider-1-0-8-package-tgz tar://C:\Users\compaq\AppData\Roaming\npm-cache\jformslider\1.0.8\package.tgz
+22 silly lockFile 59ee4133--cache-jformslider-1-0-8-package C:\Users\compaq\AppData\Roaming\npm-cache\jformslider\1.0.8\package
+23 verbose lock C:\Users\compaq\AppData\Roaming\npm-cache\jformslider\1.0.8\package C:\Users\compaq\AppData\Roaming\npm-cache\59ee4133--cache-jformslider-1-0-8-package.lock
+24 silly lockFile 59ee4133--cache-jformslider-1-0-8-package C:\Users\compaq\AppData\Roaming\npm-cache\jformslider\1.0.8\package
+25 silly lockFile 59ee4133--cache-jformslider-1-0-8-package C:\Users\compaq\AppData\Roaming\npm-cache\jformslider\1.0.8\package
+26 silly lockFile 3a52ce78- .
+27 silly lockFile 3a52ce78- .
+28 silly publish { name: 'jformslider',
+28 silly publish   version: '1.0.8',
+28 silly publish   homepage: 'http://jformslider.com',
+28 silly publish   description: 'jFormslider is a jquey plugin which can convert form to sliding form',
+28 silly publish   main: 'jFormslider.js',
+28 silly publish   dependencies: { jquery: '>=1.8.3' },
+28 silly publish   bugs:
+28 silly publish    { url: 'https://github.com/harishuw/jFormslider/issues/',
+28 silly publish      email: 'jfs@jformslider.com' },
+28 silly publish   devDependencies: {},
+28 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+28 silly publish   repository: { type: 'git', url: 'https://github.com/harishuw/jFormslider/' },
+28 silly publish   keywords:
+28 silly publish    [ 'jformslider',
+28 silly publish      'form slider',
+28 silly publish      'form validation',
+28 silly publish      'ajax slide',
+28 silly publish      'form wizard',
+28 silly publish      'slide by url' ],
+28 silly publish   author: { name: 'Harish U Warrier' },
+28 silly publish   license: 'MIT',
+28 silly publish   readme: '## **jFormslider v1.0.8** ##\r\n\r\njFormslider v1.0.8 is a jquery pluggin where we can convert a big form in to a slider\r\nForm should be in ul li format\r\n\r\n[Website](http://jformslider.com)\r\n[Demo](http://jformslider.com/#demo)\r\n[Docs](http://jformslider.com/docs)\r\n```\r\n<div id="slider">\r\n\t<ul>\r\n\t\t<li>--form componants--</li>\r\n\t\t<li>--form componants--</li>\r\n\t\t<li>--form componants--</li>\r\n\t</ul>\r\n</div>\r\n```\r\n## **Usage** ##\r\n```\r\n//default options\r\noptions={\r\nvar options={\r\n            width:600,\r\n            height:300,\r\n            movement:\'horizontal\',\r\n            next_button:true,\r\n            prev_button:true,\r\n            button_placement:\'bottom\',\r\n            submit_button:true,\r\n            submit_class:\'\',\r\n            next_class:\'\',\r\n            prev_class:\'\',\r\n            error_class:\'error\',\r\n            input_error_class:\'\',\r\n            error_element:\'p\',\r\n            texts:{\r\n                    next:\'next\',\r\n                    prev:\'prev\',\r\n                    submit:\'submit\'\r\n                  },\r\n            speed:400,\r\n            submit_handler:function(){},\r\n            slide_on_url:false,\r\n        }\t\r\n\t$(\'#slider\').jFormslider(options);//usage\r\n```\r\n\r\n## **Features** ##\r\n## **Little validations**##\r\nif you want to validate a input or select element put attribute \'required\' and to overide default message put attribute \'data-msg\'\r\n\r\n```\r\n\r\nex:<input type="text" name="username" required data-msg="Please enter username"/>\r\n```\r\n\r\nif you want to validate email put attribute \'email\'\r\n\r\n```\r\n#!html\r\n\r\nex:<input type="text" name="email" required data-msg="Please enter a valid email "/>\r\n```\r\n\r\n## **Call before** ##\r\n\r\nBefore sliding to next slide you can call a function For this just put attribute\r\n\r\n```\r\ndata-callbefore="some_function()" \r\n```\r\n\r\nin li Before loading this li it will call this function function should return true if you want to slide to this li function should return false if you dont want to slide to this li\r\n\r\n## **Goto slide** ##\r\nIf you want to goto particular li without clicking through all slides you can call\r\n\r\n```\r\n$(\'#slider\').gotoSlide(data-id)\r\n```\r\n\r\nyou should specify a attribute in li called \'data-id\' for this\r\n\r\n```\r\n\r\n<li data-id="middle_page"></li>\r\n$(\'#slider\').gotoSlide(\'middle_page\')\r\n```\r\nFor more options and docs visit [jformslider.com](http://jformslider.com/)\r\n\r\nPlease report bugs to bugs@jformslider.com\r\n',
+28 silly publish   readmeFilename: 'README.md',
+28 silly publish   gitHead: '883ca67d59a1df5cdc9251d99808cec840f19c0e',
+28 silly publish   _id: 'jformslider@1.0.8',
+28 silly publish   _shasum: '68c1066aff82cb7e5e82f0a976b8124fc6a3e521',
+28 silly publish   _from: '.' }
+29 verbose request where is /jformslider
+30 verbose request registry https://registry.npmjs.org/
+31 verbose request id 33f12768062c30bf
+32 verbose url raw /jformslider
+33 verbose url resolving [ 'https://registry.npmjs.org/', './jformslider' ]
+34 verbose url resolved https://registry.npmjs.org/jformslider
+35 verbose request where is https://registry.npmjs.org/jformslider
+36 info trying registry request attempt 1 at 23:39:17
+37 http PUT https://registry.npmjs.org/jformslider
+38 http 403 https://registry.npmjs.org/jformslider
+39 verbose headers { date: 'Sun, 18 Jan 2015 18:09:21 GMT',
+39 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+39 verbose headers   'content-type': 'application/json',
+39 verbose headers   'cache-control': 'max-age=60',
+39 verbose headers   'content-length': '6130',
+39 verbose headers   'accept-ranges': 'bytes',
+39 verbose headers   via: '1.1 varnish',
+39 verbose headers   'x-served-by': 'cache-sn88-SIN',
+39 verbose headers   'x-cache': 'MISS',
+39 verbose headers   'x-cache-hits': '0',
+39 verbose headers   'x-timer': 'S1421604560.266010,VS0,VE968',
+39 verbose headers   'keep-alive': 'timeout=10, max=50',
+39 verbose headers   connection: 'Keep-Alive' }
+40 error publish Failed PUT 403
+41 error Error: forbidden cannot modify pre-existing version: 1.0.8
+41 error old={"name":"jformslider","version":"1.0.8","homepage":"http://jformslider.com","description":"jFormslider is a jquey plugin which you can convert to sliding form","main":"jFormslider.js","dependencies":{"jquery":">=1.8.3"},"bugs":{"url":"https://github.com/harishuw/jFormslider/issues/","email":"jfs@jformslider.com"},"devDependencies":{},"scripts":{"test":"echo \"Error: no test specified\" && exit 1"},"repository":{"type":"git","url":"https://github.com/harishuw/jFormslider/"},"keywords":["jformslider","form slider","form validation","ajax slide","form wizard","slide by url"],"author":{"name":"Harish U Warrier"},"license":"MIT","gitHead":"883ca67d59a1df5cdc9251d99808cec840f19c0e","_id":"jformslider@1.0.8","_shasum":"ab6483778592dd2694e8e7887040a0aba8c216be","_from":".","_npmVersion":"1.4.28","_npmUser":{"name":"harishuw","email":"harishuw@gmail.com"},"maintainers":[{"name":"harishuw","email":"harishuw@gmail.com"}],"dist":{"shasum":"ab6483778592dd2694e8e7887040a0aba8c216be","tarball":"http://registry.npmjs.org/jformslider/-/jformslider-1.0.8.tgz"}}
+41 error new={"name":"jformslider","version":"1.0.8","homepage":"http://jformslider.com","description":"jFormslider is a jquey plugin which can convert form to sliding form","main":"jFormslider.js","dependencies":{"jquery":">=1.8.3"},"bugs":{"url":"https://github.com/harishuw/jFormslider/issues/","email":"jfs@jformslider.com"},"devDependencies":{},"scripts":{"test":"echo \"Error: no test specified\" && exit 1"},"repository":{"type":"git","url":"https://github.com/harishuw/jFormslider/"},"keywords":["jformslider","form slider","form validation","ajax slide","form wizard","slide by url"],"author":{"name":"Harish U Warrier"},"license":"MIT","readme":"## **jFormslider v1.0.8** ##\u000d\u000a\u000d\u000ajFormslider v1.0.8 is a jquery pluggin where we can convert a big form in to a slider\u000d\u000aForm should be in ul li format\u000d\u000a\u000d\u000a[Website](http://jformslider.com)\u000d\u000a[Demo](http://jformslider.com/#demo)\u000d\u000a[Docs](http://jformslider.com/docs)\u000d\u000a```\u000d\u000a<div id=\"slider\">\u000d\u000a\u0009<ul>\u000d\u000a\u0009\u0009<li>--form componants--</li>\u000d\u000a\u0009\u0009<li>--form componants--</li>\u000d\u000a\u0009\u0009<li>--form componants--</li>\u000d\u000a\u0009</ul>\u000d\u000a</div>\u000d\u000a```\u000d\u000a## **Usage** ##\u000d\u000a```\u000d\u000a//default options\u000d\u000aoptions={\u000d\u000avar options={\u000d\u000a            width:600,\u000d\u000a            height:300,\u000d\u000a            movement:'horizontal',\u000d\u000a            next_button:true,\u000d\u000a            prev_button:true,\u000d\u000a            button_placement:'bottom',\u000d\u000a            submit_button:true,\u000d\u000a            submit_class:'',\u000d\u000a            next_class:'',\u000d\u000a            prev_class:'',\u000d\u000a            error_class:'error',\u000d\u000a            input_error_class:'',\u000d\u000a            error_element:'p',\u000d\u000a            texts:{\u000d\u000a                    next:'next',\u000d\u000a                    prev:'prev',\u000d\u000a                    submit:'submit'\u000d\u000a                  },\u000d\u000a            speed:400,\u000d\u000a            submit_handler:function(){},\u000d\u000a            slide_on_url:false,\u000d\u000a        }\u0009\u000d\u000a\u0009$('#slider').jFormslider(options);//usage\u000d\u000a```\u000d\u000a\u000d\u000a## **Features** ##\u000d\u000a## **Little validations**##\u000d\u000aif you want to validate a input or select element put attribute 'required' and to overide default message put attribute 'data-msg'\u000d\u000a\u000d\u000a```\u000d\u000a\u000d\u000aex:<input type=\"text\" name=\"username\" required data-msg=\"Please enter username\"/>\u000d\u000a```\u000d\u000a\u000d\u000aif you want to validate email put attribute 'email'\u000d\u000a\u000d\u000a```\u000d\u000a#!html\u000d\u000a\u000d\u000aex:<input type=\"text\" name=\"email\" required data-msg=\"Please enter a valid email \"/>\u000d\u000a```\u000d\u000a\u000d\u000a## **Call before** ##\u000d\u000a\u000d\u000aBefore sliding to next slide you can call a function For this just put attribute\u000d\u000a\u000d\u000a```\u000d\u000adata-callbefore=\"some_function()\" \u000d\u000a```\u000d\u000a\u000d\u000ain li Before loading this li it will call this function function should return true if you want to slide to this li function should return false if you dont want to slide to this li\u000d\u000a\u000d\u000a## **Goto slide** ##\u000d\u000aIf you want to goto particular li without clicking through all slides you can call\u000d\u000a\u000d\u000a```\u000d\u000a$('#slider').gotoSlide(data-id)\u000d\u000a```\u000d\u000a\u000d\u000ayou should specify a attribute in li called 'data-id' for this\u000d\u000a\u000d\u000a```\u000d\u000a\u000d\u000a<li data-id=\"middle_page\"></li>\u000d\u000a$('#slider').gotoSlide('middle_page')\u000d\u000a```\u000d\u000aFor more options and docs visit [jformslider.com](http://jformslider.com/)\u000d\u000a\u000d\u000aPlease report bugs to bugs@jformslider.com\u000d\u000a","readmeFilename":"README.md","gitHead":"883ca67d59a1df5cdc9251d99808cec840f19c0e","_id":"jformslider@1.0.8","_shasum":"68c1066aff82cb7e5e82f0a976b8124fc6a3e521","_from":".","_npmVersion":"1.4.28","_npmUser":{"name":"harishuw","email":"harishuw@gmail.com"},"maintainers":[{"name":"harishuw","email":"harishuw@gmail.com"}],"dist":{"shasum":"68c1066aff82cb7e5e82f0a976b8124fc6a3e521","tarball":"http://registry.npmjs.org/jformslider/-/jformslider-1.0.8.tgz"}}: jformslider
+41 error     at RegClient.<anonymous> (c:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:308:14)
+41 error     at Request._callback (c:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:246:65)
+41 error     at Request.self.callback (c:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:236:22)
+41 error     at Request.emit (events.js:98:17)
+41 error     at Request.<anonymous> (c:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1142:14)
+41 error     at Request.emit (events.js:117:20)
+41 error     at IncomingMessage.<anonymous> (c:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1096:12)
+41 error     at IncomingMessage.emit (events.js:117:20)
+41 error     at _stream_readable.js:943:16
+41 error     at process._tickCallback (node.js:419:13)
+42 error If you need help, you may report this *entire* log,
+42 error including the npm and node versions, at:
+42 error     <http://github.com/npm/npm/issues>
+43 error System Windows_NT 6.1.7601
+44 error command "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "publish"
+45 error cwd D:\Projects\javascript\jquery\jFormslider
+46 error node -v v0.10.32
+47 error npm -v 1.4.28
+48 verbose exit [ 1, true ]
