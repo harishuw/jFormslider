@@ -1,4 +1,4 @@
 gitignore/
 node_modules/
-npm-debug.txt
+npm-debug.log
 package.json
